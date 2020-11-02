@@ -1,0 +1,94 @@
+---
+title             : "Practicing GitHub: Lab 8"
+shorttitle        : "Practicing GitHub"
+
+author: 
+  - name          : "Sarah Spafford"
+    affiliation   : "1"
+    corresponding : yes    # Define only one corresponding author
+    address       : "123 PhD"
+    email         : "dont@me.com"
+    role:         # Contributorship roles (e.g., CRediT, https://casrai.org/credit/)
+      - Conceptualization
+      - Writing - Original Draft Preparation
+      - Writing - Review & Editing
+  - name          : "Heather Terral"
+    affiliation   : "1"
+    role:
+      - Writing - Review & Editing
+  - name          : "Maggie Head"
+    affiliation   : "1"
+    role:
+      - Writing - Review & Editing
+      
+affiliation:
+  - id            : "1"
+    institution   : "University of Oregon"
+ 
+authornote: |
+  Department of Counseling Psychology and Human Services, University of Oregon.
+
+  This is where I write an author note, but I am not sure what to say so I shall leave you with this: Peace be with you.
+
+abstract: |
+  This is typically where you would summarize your research with an intro, methods, results, and discussion. But, that would take some time. So here is a few lines to fill in the spot that would be an abstract. 
+  
+  <!-- https://tinyurl.com/ybremelq -->
+  
+keywords          : "GitHub, practice, abstract"
+
+bibliography      : ["r-references.bib"]
+
+floatsintext      : no
+figurelist        : no
+tablelist         : no
+footnotelist      : no
+linenumbers       : no
+mask              : no
+draft             : no
+
+documentclass     : "apa6"
+classoption       : "man"
+output:
+  papaja::apa6_pdf:
+    citation_package: biblatex
+---
+
+```{r setup, include = FALSE}
+library("papaja")
+r_refs("r-references.bib")
+```
+
+```{r analysis-preferences}
+# Seed for random number generation
+set.seed(42)
+knitr::opts_chunk$set(cache.extra = knitr::rand_seed)
+```
+
+# Methods
+
+We report how we determined our sample size, all data exclusions (if any), all manipulations, and all measures in the study. <!-- 21-word solution (Simmons, Nelson & Simonsohn, 2012; retrieved from http://ssrn.com/abstract=2160588) -->
+
+## Participants
+
+## Material
+
+## Procedure
+
+## Data analysis
+
+We used `r cite_r("r-references.bib")` for all our analyses.
+
+# Results
+
+# Discussion
+
+```{=tex}
+\begingroup
+\setlength{\parindent}{-0.5in}
+\setlength{\leftskip}{0.5in}
+```
+::: {#refs custom-style="Bibliography"}
+:::
+
+\endgroup

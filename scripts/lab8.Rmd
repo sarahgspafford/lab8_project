@@ -65,6 +65,18 @@ set.seed(42)
 knitr::opts_chunk$set(cache.extra = knitr::rand_seed)
 ```
 
+```{r import, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE,
+                      fig.height=6.5, 
+                      fig.width=8)
+library(here)
+library(rio)
+library(tidyverse)
+
+star <- import(here("data", "star.csv")) %>% 
+  as_tibble()
+```
+
 # Methods
 
 We report how we determined our sample size, all data exclusions (if any), all manipulations, and all measures in the study. <!-- 21-word solution (Simmons, Nelson & Simonsohn, 2012; retrieved from http://ssrn.com/abstract=2160588) -->

@@ -37,7 +37,7 @@ abstract: |
   
 keywords          : "GitHub, practice, abstract"
 
-bibliography      : ["r-references.bib"]
+bibliography      : "r-references.bib"
 
 floatsintext      : no
 figurelist        : no
@@ -76,6 +76,7 @@ library(tidyverse)
 star <- import(here("data", "star.csv")) %>% 
   as_tibble()
 ```
+@benham2010 is a peer-reviewed article, as is the work by Gallo and colleagues [-@gallo2014]
 
 # Methods
 
@@ -88,10 +89,36 @@ We report how we determined our sample size, all data exclusions (if any), all m
 ## Procedure
 
 ## Data analysis
+```{r}
+head(star)
+```
+
+```{r}
+table_summary <- star %>%  
+  group_by(sex, frl) %>% 
+  summarize(n = n(),
+            math_mean = mean(tmathss),
+            math_sd = sd(tmathss),
+            rdg_mean = mean(treadss),
+            rdg_sd = sd(treadss)) 
+  
+table_summary
+                        
+```
 
 We used `r cite_r("r-references.bib")` for all our analyses.
 
 # Results
+```{r apa_table, results="asis"}
+papaja::apa_table(
+  table_summary, 
+  caption = "Descriptive statistics from star data", 
+  note = "This table was created with apa_table().", 
+  escape = TRUE
+)
+```
+Girls eligible for free/reduced price lunch (FRPL) had higher math scores than boys eligible for FRPL. Girls eligible for FRPL had higher scores than boys eligble for FRPL. Girls not eligible for FRPL had, on average, higher math and reading scores than boys who were not eligible.
+
 
 # Discussion
 
@@ -100,7 +127,10 @@ We used `r cite_r("r-references.bib")` for all our analyses.
 \setlength{\parindent}{-0.5in}
 \setlength{\leftskip}{0.5in}
 ```
-::: {#refs custom-style="Bibliography"}
+\newpage
+::: {#refs custom-style="Bibliography"} 
 :::
+
+
 
 \endgroup

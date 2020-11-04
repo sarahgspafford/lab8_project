@@ -1,0 +1,29 @@
+\begin{table*}[hbt]
+\ifnextchar[{\eatarg}{}
+[tbp]
+
+\begin{center}
+\begin{threeparttable}
+
+\caption{\label{tab:apa_table}Descriptive statistics from star data}
+
+\begin{tabular}{lllllll}
+\toprule
+sex & \multicolumn{1}{c}{frl} & \multicolumn{1}{c}{n} & \multicolumn{1}{c}{math\_mean} & \multicolumn{1}{c}{math\_sd} & \multicolumn{1}{c}{rdg\_mean} & \multicolumn{1}{c}{rdg\_sd}\\
+\midrule
+boy & no & 1544 & 492.85 & 46.34 & 441.46 & 32.32\\
+boy & yes & 1410 & 469.87 & 46.09 & 425.38 & 26.63\\
+girl & no & 1429 & 501.21 & 45.96 & 448.54 & 34.52\\
+girl & yes & 1365 & 477.51 & 46.30 & 430.80 & 27.42\\
+\bottomrule
+\addlinespace
+\end{tabular}
+
+\begin{tablenotes}[para]
+\normalsize{\textit{Note.} This table was created with apa\_table().}
+\end{tablenotes}
+
+\end{threeparttable}
+\end{center}
+
+\end{table*}

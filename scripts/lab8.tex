@@ -6,13 +6,12 @@
   english,
   man]{apa6}
 \usepackage{lmodern}
-\usepackage{amsmath}
+\usepackage{amssymb,amsmath}
 \usepackage{ifxetex,ifluatex}
 \ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
   \usepackage{textcomp} % provide euro and other symbols
-  \usepackage{amssymb}
 \else % if luatex or xetex
   \usepackage{unicode-math}
   \defaultfontfeatures{Scale=MatchLowercase}
@@ -40,12 +39,11 @@
 \hypersetup{
   pdftitle={Practicing GitHub: Lab 8},
   pdfauthor={Sarah Spafford1, Heather Terral1, \& Maggie Head1},
-  pdflang={en-EN},
   pdfkeywords={GitHub, practice, abstract},
   hidelinks,
   pdfcreator={LaTeX via pandoc}}
 \urlstyle{same} % disable monospaced font for URLs
-\usepackage{graphicx}
+\usepackage{graphicx,grffile}
 \makeatletter
 \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
 \def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
@@ -128,31 +126,8 @@
 \else
   \usepackage[shorthands=off,main=english]{babel}
 \fi
-\ifluatex
-  \usepackage{selnolig}  % disable illegal ligatures
-\fi
 \usepackage[]{biblatex}
 \addbibresource{r-references.bib}
-\newlength{\cslhangindent}
-\setlength{\cslhangindent}{1.5em}
-\newlength{\csllabelwidth}
-\setlength{\csllabelwidth}{3em}
-\newenvironment{CSLReferences}[3] % #1 hanging-ident, #2 entry spacing
- {% don't indent paragraphs
-  \setlength{\parindent}{0pt}
-  % turn on hanging indent if param 1 is 1
-  \ifodd #1 \everypar{\setlength{\hangindent}{\cslhangindent}}\ignorespaces\fi
-  % set entry spacing
-  \ifnum #2 > 0
-  \setlength{\parskip}{#2\baselineskip}
-  \fi
- }%
- {}
-\usepackage{calc} % for \widthof, \maxof
-\newcommand{\CSLBlock}[1]{#1\hfill\break}
-\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\maxof{\widthof{#1}}{\csllabelwidth}}{#1}}
-\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth}{#1}}
-\newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
 
 \title{Practicing GitHub: Lab 8}
 \author{Sarah Spafford\textsuperscript{1}, Heather Terral\textsuperscript{1}, \& Maggie Head\textsuperscript{1}}
@@ -182,6 +157,8 @@ This is typically where you would summarize your research with an intro, methods
 \begin{document}
 \maketitle
 
+\textcite{benham2010} is a peer-reviewed article, as is the work by Gallo and colleagues \autocite*{gallo2014}
+
 \hypertarget{methods}{%
 \section{Methods}\label{methods}}
 
@@ -199,10 +176,64 @@ We report how we determined our sample size, all data exclusions (if any), all m
 \hypertarget{data-analysis}{%
 \subsection{Data analysis}\label{data-analysis}}
 
-We used R \autocite[Version 4.0.2;][]{R-base} and the R-package \emph{papaja} \autocite[Version 0.1.0.9997;][]{R-papaja} for all our analyses.
+\begin{verbatim}
+## # A tibble: 6 x 12
+##   schidkn sex   frl   reg_size reg_size_aid small_size white black other totexp
+##     <int> <chr> <chr>    <int>        <int>      <int> <int> <int> <int>  <int>
+## 1      63 girl  no           0            0          1     1     0     0      7
+## 2      20 girl  no           0            0          1     0     1     0     21
+## 3      19 boy   yes          0            1          0     0     1     0      0
+## 4      69 boy   no           1            0          0     1     0     0     16
+## 5      79 boy   yes          0            0          1     1     0     0      5
+## 6       5 boy   yes          1            0          0     1     0     0      8
+## # ... with 2 more variables: tmathss <int>, treadss <int>
+\end{verbatim}
+
+\begin{verbatim}
+## # A tibble: 4 x 7
+## # Groups:   sex [2]
+##   sex   frl       n math_mean math_sd rdg_mean rdg_sd
+##   <chr> <chr> <int>     <dbl>   <dbl>    <dbl>  <dbl>
+## 1 boy   no     1544      493.    46.3     441.   32.3
+## 2 boy   yes    1410      470.    46.1     425.   26.6
+## 3 girl  no     1429      501.    46.0     449.   34.5
+## 4 girl  yes    1365      478.    46.3     431.   27.4
+\end{verbatim}
+
+We used R \autocite[Version 3.6.2;][]{R-base} and the R-packages \emph{\}dplyr} {[}@\}R-dplyr{]}, and \emph{papaja} \autocite[Version 0.1.0.9997;][]{R-papaja} for all our analyses.
 
 \hypertarget{results}{%
 \section{Results}\label{results}}
+
+\begin{table}[tbp]
+
+\begin{center}
+\begin{threeparttable}
+
+\caption{\label{tab:apa_table}Descriptive statistics from star data}
+
+\begin{tabular}{lllllll}
+\toprule
+sex & \multicolumn{1}{c}{frl} & \multicolumn{1}{c}{n} & \multicolumn{1}{c}{math\_mean} & \multicolumn{1}{c}{math\_sd} & \multicolumn{1}{c}{rdg\_mean} & \multicolumn{1}{c}{rdg\_sd}\\
+\midrule
+boy & no & 1544 & 492.85 & 46.34 & 441.46 & 32.32\\
+boy & yes & 1410 & 469.87 & 46.09 & 425.38 & 26.63\\
+girl & no & 1429 & 501.21 & 45.96 & 448.54 & 34.52\\
+girl & yes & 1365 & 477.51 & 46.30 & 430.80 & 27.42\\
+\bottomrule
+\addlinespace
+\end{tabular}
+
+\begin{tablenotes}[para]
+\normalsize{\textit{Note.} This table was created with apa\_table().}
+\end{tablenotes}
+
+\end{threeparttable}
+\end{center}
+
+\end{table}
+
+Girls eligible for free/reduced price lunch (FRPL) had higher math scores than boys eligible for FRPL. Girls eligible for FRPL had higher scores than boys eligble for FRPL. Girls not eligible for FRPL had, on average, higher math and reading scores than boys who were not eligible.
 
 \hypertarget{discussion}{%
 \section{Discussion}\label{discussion}}
@@ -211,9 +242,11 @@ We used R \autocite[Version 4.0.2;][]{R-base} and the R-package \emph{papaja} \a
 \setlength{\parindent}{-0.5in}
 \setlength{\leftskip}{0.5in}
 
-\hypertarget{refs}{}
-\begin{CSLReferences}{0}{0}
-\end{CSLReferences}
+\newpage
+
+\#I'm not sure what this is doing
+::: \{\#refs custom-style=\enquote{Bibliography}\}
+:::
 
 \endgroup
 
